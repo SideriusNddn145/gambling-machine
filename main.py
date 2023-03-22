@@ -7,7 +7,7 @@ MIN_BET = 1
 ROWS = 3
 COLS = 3
 
-sysmbols_count = {
+symbols_count = {
     "A": 2,
     "B": 4,
     "C": 6,
@@ -16,8 +16,8 @@ sysmbols_count = {
 
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
-    for symbol, sysmbols_count in symbol.items():
-        for _ in range(sysmbols_count):
+    for symbol, symbols_count in symbols.items():
+        for _ in range(symbols_count):
             all_symbols.append(symbol)
 
     columns = [[], [], []]
@@ -105,7 +105,10 @@ def main():
 
         else:
             break
+    
     print(f"You are betting ${bet} on {lines} lines. Total bet is equal to: ${total_bet}")
 
+    slots = get_slot_machine_spin(ROWS, COLS, symbols_count)
+    print_slot_machines(slots)
 
 main()
