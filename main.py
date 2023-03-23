@@ -14,13 +14,23 @@ symbols_count = {
     "D": 8
 }
 
+symbols_value = {
+    "A": 5,
+    "B": 4,
+    "C": 3,
+    "D": 2
+}
+
+def check_winnings(columns, lines, bet, values):
+
+
 def get_slot_machine_spin(rows, cols, symbols):
     all_symbols = []
     for symbol, symbols_count in symbols.items():
         for _ in range(symbols_count):
             all_symbols.append(symbol)
 
-    columns = [[], [], []]
+    columns = []
     for _ in range(cols):
         column = []
         current_symbols = all_symbols[:]
@@ -37,22 +47,21 @@ def print_slot_machines(columns):
     for row in range(len(columns [0])):
         for i, column in enumerate(columns):
             if i != len(columns) - 1:
-                print(column[row], "|")
-        else:
-            print(column[row])
+                print(column[row], end=" | ")
+            else:
+                print(column[row], end='')
+
+        print()
 
 def deposit():
     while True:
         amount = input("How much would you like to deposit? $ ")
         if amount.isdigit():
             amount = int(amount)
-            
             if amount > 0:
                 break
-            
             else:
                 print("Amount must be greater than 0.")
-        
         else:
             print("Please enter a number.")
 
@@ -64,13 +73,10 @@ def get_the_number_of_line():
         lines = input("Enter the number of lines you want to bet on (1-" + str(MAX_LINES) + ")? ")
         if lines.isdigit():
             lines = int(lines)
-            
             if 1 <= lines <= MAX_LINES:
                 break
-            
             else:
                 print("Enter a valid number of lines.")
-        
         else:
             print("Please enter a number.")
 
@@ -81,13 +87,10 @@ def get_bet():
         amount = input("How much would you like to bet on each line? $ ")
         if amount.isdigit():
             amount = int(amount)
-            
             if MIN_BET <= amount <= MAX_BET:
                 break
-            
             else:
                 print(f"Amount must be between ${MIN_BET} - ${MAX_BET}.")
-        
         else:
             print("Please enter a number.")
 
@@ -99,10 +102,8 @@ def main():
     while True:
         bet = get_bet()
         total_bet = bet * lines
-
         if total_bet > balance:
             print(f"You do not have enough to bet that amount, you current balance is: ${balance}")
-
         else:
             break
     
